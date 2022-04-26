@@ -39,11 +39,12 @@ void read_image(char *input_path) {
 }
 
 void gray_filter(char *output_path,size_t inp ,size_t oup,int n ) {
-	printf("hilo %i",n);
+	printf("hilo %i input %li outut %li size %li",n, inp, oup, output_size);
         
     
     // Esto aún no lo entiendo, todo el código me lo encontré por internet
     for(unsigned char *p = input+ inp , *pg = output+ oup ; p != input+ input_size*(n+1); p += channels, pg += gray_channels) {
+
         *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
         if(channels == 4) {
             *(pg + 1) = *(p + 3);
