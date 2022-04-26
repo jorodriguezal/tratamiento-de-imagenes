@@ -81,7 +81,7 @@ void write_output(char *output_path, int output_channels) {
 int main(int argc, char **argv) 
 { 
 	read_image(*(argv + 1));
-	int threads = 6;
+	int threads = atoi(*(argv + 3));
     pthread_t ar_threads[threads]; 
 	gray_channels = channels == 4 ? 2 : 1;
 	input_size = width * height * channels/threads;
