@@ -3,7 +3,6 @@
 #include <sys/time.h>
 #include<pthread.h>
 #include<unistd.h>
-
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image/stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -15,57 +14,64 @@
 #include <pthread.h>
 #include <sys/time.h>
 
-int width, height, channels;
+//Declaraciones
+int width, height, channels, gray_channels;
 unsigned char *input, *output;
 size_t input_size, output_size;
-int gray_channels,channels ;
 char *output_path;
 
 void read_image(char *input_path);
 void* gray_filter(void* params);
 void write_output(char *output_path, int output_channels);
 
-//Estructura de parámetros para gray_filter
-/*struct Params{
-    size_t inp;
-    size_t oup;
-    int n;
-    char *output_path;
-};*/
-
+//lee la imagen en la dirección ingresada
 void read_image(char *input_path) {
+
+    //cargar la imagen (asigna a los argumentos dados los valores correspondientes a alto, ancho y canales de la imagen)
     input = (unsigned char *)stbi_load(input_path, &width, &height, &channels, 0);
+
+    //si no se pudo cargar laimagen
     if(input == NULL) {
         perror("Error in loading the image");
         exit(1);
     }
+    //impresión de información de la imagen
     printf("Loaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
 }
 
-void* gray_filter(void* i ) {
-    //struct Params *args = (struct Params*)params;
-	
-    int n = *(int *)i;
-    printf("n = %d", n);
-    int inp= input_size*(n);
-    int oup=output_size*(n);    
-    //printf("hilo %i input %i outut %i size %ld",n, inp, oup, output_size);
-    // Esto aún no lo entiendo, todo el código me lo encontré por internet
-    for(unsigned char *p = input+ inp , *pg = output+ oup ; p != input+ input_size*(n+1); p += channels, pg += gray_channels) {
+
+//filtro gris
+void* gray_filter(void* thread_index) {
+
+    //se asignan posiciones de lectura y escritura según el nùmero de hilo y el tamaño de lo que le corresponde a cada uno
+    int n_thread = *(int *)thread_index;
+    int inp_begin = input_size*(n_thread);
+    int oup_begin = output_size*(n_thread);
+
+    //se itera entre la posición inicial y final designada para el hilo
+    for(unsigned char *p = input + inp_begin , *pg = output + oup_begin ; p != input + input_size*(n_thread+1); p += channels, pg += gray_channels) {
+
+        //se realiza transformación en el pixel
         *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
+
+        //si se tienen 4 canales
         if(channels == 4) {
             *(pg + 1) = *(p + 3);
         }
     }
-    
-   write_output(output_path, gray_channels);
-   //free(params);
+
+    //liberar número del hilo
+    free(thread_index);
 }
 
+//escribir los nuevos datos en el archivo con la dirección de salida
 void write_output(char *output_path, int output_channels) {
+    
+    //obtener último punto del archivo para encontrar extensión
     char *dot = strrchr(output_path, '.');
     char *ext = dot + 1;
 
+    //escribe según el tipo de archivo deseado
     if (strcmp(ext, "jpg") == 0 || strcmp(ext, "jpeg") == 0)
         stbi_write_jpg(output_path, width, height, output_channels, output, 100);
     else if (strcmp(ext, "png") == 0)
@@ -80,55 +86,60 @@ void write_output(char *output_path, int output_channels) {
 
 int main(int argc, char **argv) 
 { 
+    //cargar la imagen
 	read_image(*(argv + 1));
+
+    //hilos ingresados
 	int threads = atoi(*(argv + 3));
-    pthread_t ar_threads[threads]; 
+    pthread_t ar_threads[threads];
+
+    //canales
 	gray_channels = channels == 4 ? 2 : 1;
+
+    //se definen tamaños de segmento a asignar a cada hilo
 	input_size = width * height * channels/threads;
     output_size = width * height * gray_channels/threads;
-	int inp,oup;
+	
+    //valores para calcular el tiempo de ejecución
     struct timeval tval_before, tval_after, tval_result;
     gettimeofday(&tval_before, NULL);
+
+    //para guardar datos de la imagen con filtro
     output = (unsigned char *)malloc(output_size*threads);
+
+    //patrón de salida
     output_path=*(argv + 2);
+
+    //error en malloc
     if(output == NULL) {
         perror("Unable to allocate memory for the gray image");
         exit(1);
     }
 
-    //struct Params *params;
+    //ciclo para crear hilos
     for (int i=0;i<threads;i++)
     { 
-        //params = malloc(sizeof(struct Params));
-    	//params->inp= input_size*(i);
-    	//params->oup=output_size*(i);
-        //params->output_path=*(argv + 2);
-    	//printf("hilo %i\n",i);
+        //apuntador a la iteración actual
         int *n = malloc(sizeof(int));
         *n = i;
-        pthread_create(&ar_threads[i], NULL, gray_filter, /*(void *)*/n);
-    	
-    	
-    	printf("fin hilo %i\n",i);
-    	//input_size += input_size;
-    	//output_size +=output_size;
+        //lanzar hilos
+        pthread_create(&ar_threads[i], NULL, gray_filter, n);
     }
+
+    //termina cuando acaben los hilos
     for (int i=0; i < threads; i++){
         pthread_join(ar_threads[i], NULL);
     }
-	//write_output(output_path, gray_channels);
+
+    //se transforma información resultante en imagen
+    write_output(output_path, gray_channels);
+
+    //se obtiene el tiempo de ejecución
     gettimeofday(&tval_after, NULL);
     timersub(&tval_after, &tval_before, &tval_result);
     printf("Seconds taken: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
 
+    //se libera espacio de la imagen
     stbi_image_free(input);
     stbi_image_free(output);
-	
 }
-
-
-// Referencias
-//
-// [1] El tutorial que seguí se encuentra en el link https://solarianprogrammer.com/2019/06/10/c-programming-reading-writing-images-stb_image-libraries/
-// Se editó para que sea modular y más bonito, pero esto va en progreso
-
