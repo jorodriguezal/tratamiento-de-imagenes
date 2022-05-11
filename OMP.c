@@ -16,7 +16,6 @@ size_t input_size, output_size;
 char *output_path;
 
 void read_image(char *input_path);
-void *gray_filter(void *params);
 void write_output(char *output_path, int output_channels);
 
 void read_image(char *input_path)
@@ -30,18 +29,6 @@ void read_image(char *input_path)
     printf("Loaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
 }
 
-void *gray_filter(void *i)
-{
-    int n = *(int *)i;
-    int inp = input_size * (n);
-    int oup = output_size * (n);
-    for (unsigned char *p = input + inp, *pg = output + oup; p != input + input_size * (n + 1); p += channels, pg += gray_channels)
-    {
-        *pg = (uint8_t)((*p + *(p + 1) + *(p + 2)) / 3.0);
-        if (channels == 4)
-            *(pg + 1) = *(p + 3);
-    }
-}
 
 void write_output(char *output_path, int output_channels)
 {
@@ -59,18 +46,31 @@ void write_output(char *output_path, int output_channels)
         printf("Output type is not jpg, png or bmp, defaulting to output.jpg\n");
         stbi_write_jpg("output.jpg", width, height, output_channels, output, 100);
     }
+
+
+    stbi_image_free(input);
+    stbi_image_free(output);
 }
 
 int main(int argc, char **argv)
 {
+    //leer imagen
     read_image(*(argv + 1));
+    
+    //hilos a usar
     int threads = atoi(*(argv + 3));
-    // pthread_t ar_threads[threads];
+
+    //canales
     gray_channels = channels == 4 ? 2 : 1;
+
+    //tamaños de input y output por hilo
     input_size = width * height * channels / threads;
     output_size = width * height * gray_channels / threads;
 
+    //memoria para salida
     output = (unsigned char *)malloc(output_size * threads);
+
+    //archivo de destino
     output_path = *(argv + 2);
     if (output == NULL)
     {
@@ -78,17 +78,11 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    /*for (int i=0; i < threads; i++) {
-        int *n = malloc(sizeof(int));
-        *n = i;
-        pthread_create(&ar_threads[i], NULL, gray_filter, n);
-    }
-
-    for (int i=0; i < threads; i++)
-        pthread_join(ar_threads[i], NULL);*/
-
+    //tiempo inicial
     struct timeval tval_before, tval_after, tval_result;
     gettimeofday(&tval_before, NULL);
+
+    //paralelización con OpenMP
     omp_set_num_threads(threads);
 #pragma omp parallel
     {
@@ -96,6 +90,8 @@ int main(int argc, char **argv)
         n = omp_get_thread_num();
         inp = input_size * (n);
         oup = output_size * (n);
+
+        //asigna a cada pixel de destino el promedio de sus canales (filtro gris)
         for (unsigned char *p = input + inp, *pg = output + oup; p != input + input_size * (n + 1); p += channels, pg += gray_channels)
         {
             *pg = (uint8_t)((*p + *(p + 1) + *(p + 2)) / 3.0);
@@ -103,13 +99,14 @@ int main(int argc, char **argv)
                 *(pg + 1) = *(p + 3);
         }
     }
+
+    //medida de tiempo de ejecución
     gettimeofday(&tval_after, NULL);
     timersub(&tval_after, &tval_before, &tval_result);
     printf("Seconds taken: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
-    write_output(output_path, gray_channels);
 
-    stbi_image_free(input);
-    stbi_image_free(output);
+    //devuelve imagen
+    write_output(output_path, gray_channels);
 }
 
 // Referencias
