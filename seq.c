@@ -8,8 +8,10 @@
 #include "stb_image/stb_image_write.h"
 
 
-int width, height, channels;
+int width, height, channels, gray_channels;
 unsigned char *input, *output;
+size_t input_size, output_size;
+char *output_path;
 
 void read_image(char *input_path);
 void gray_filter(char *output_path);
@@ -25,15 +27,6 @@ void read_image(char *input_path) {
 }
 
 void gray_filter(char *output_path) {
-    size_t input_size = width * height * channels;
-    int gray_channels = channels == 4 ? 2 : 1; // Si la imagen es de 4 canales (RGB-alpha) los canales de la imagen en blanco y negro serán 2 (YA, Y = monocromático) si son 3 canales (RGB) el resultado es 1 canal (Y)
-    size_t output_size = width * height * gray_channels;
-
-    output = (unsigned char *)malloc(output_size);
-    if(output == NULL) {
-        perror("Unable to allocate memory for the gray image");
-        exit(1);
-    }
     // Itera cada pixel con apuntadores (RGB-alpha si son 4 canales. RGB si son 3) aplica la fórmula 
     for(unsigned char *p = input, *pg = output; p != input + input_size; p += channels, pg += gray_channels) {
         *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
@@ -41,7 +34,6 @@ void gray_filter(char *output_path) {
             *(pg + 1) = *(p + 3);
         }
     }
-    write_output(output_path, gray_channels);
 }
 
 void write_output(char *output_path, int output_channels) {
@@ -63,14 +55,27 @@ void write_output(char *output_path, int output_channels) {
 int main(int argc, char **argv) { 
     read_image(*(argv + 1)); 
     
+    input_size = width * height * channels;
+    gray_channels = channels == 4 ? 2 : 1; // Si la imagen es de 4 canales (RGB-alpha) los canales de la imagen en blanco y negro serán 2 (YA, Y = monocromático) si son 3 canales (RGB) el resultado es 1 canal (Y)
+    output_size = width * height * gray_channels;
+
+    output_path=*(argv + 2);
+    output = (unsigned char *)malloc(output_size);
+    if(output == NULL) {
+        perror("Unable to allocate memory for the gray image");
+        exit(1);
+    }
+
     struct timeval tval_before, tval_after, tval_result;
     gettimeofday(&tval_before, NULL);
 
-    gray_filter(*(argv + 2));
+    gray_filter(output_path);
 
     gettimeofday(&tval_after, NULL);
     timersub(&tval_after, &tval_before, &tval_result);
     printf("Seconds taken: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
+
+    write_output(output_path, gray_channels);
 
     stbi_image_free(input);
     stbi_image_free(output);
@@ -80,4 +85,4 @@ int main(int argc, char **argv) {
 // Referencias
 //
 // [1] El tutorial que seguí se encuentra en el link https://solarianprogrammer.com/2019/06/10/c-programming-reading-writing-images-stb_image-libraries/
-// Se editó para que sea modular y más bonito, pero esto va en progreso
+// Se editó para que sea modular y más bonito
