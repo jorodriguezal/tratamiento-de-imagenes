@@ -3,12 +3,33 @@
 input_dir=./input_images
 images=$(ls $input_dir)
 output_dir=./output_images
-filter=./mypc_hilos
+filter_sq=./sq
+filter_pt=./par_pt
+filter_omp=./par_omp
+
+echo "" > results.txt
+
+printf "======================\nSequential\n======================\n" | tee -a results.txt
+
+for i in $images; do
+    printf "\nExecuting the filter for image $i\n" | tee -a results.txt;
+    $filter_sq $input_dir/$i $output_dir/seq_${i} | tee -a results.txt
+done
+
+printf "\n======================\nParallel pthread\n======================\n" | tee -a results.txt
 
 for i in $images; do
     for ((t=1; t<=16; t=2*t)) do
         printf "\nExecuting the filter for image $i with $t threads:\n" | tee -a results.txt;
-        $filter $input_dir/$i $output_dir/${t}_${i} $t | tee -a results.txt;
+        $filter_pt $input_dir/$i $output_dir/${t}_pt_${i} $t | tee -a results.txt;
     done
 done
 
+printf "\n======================\nParallel Open MP\n======================\n" | tee -a results.txt
+
+for i in $images; do
+    for ((t=1; t<=16; t=2*t)) do
+        printf "\nExecuting the filter for image $i with $t threads:\n" | tee -a results.txt;
+        $filter_omp $input_dir/$i $output_dir/${t}_omp_${i} $t | tee -a results.txt;
+    done
+done

@@ -18,6 +18,8 @@ char *output_path;
 void read_image(char *input_path);
 void write_output(char *output_path, int output_channels);
 
+
+/* Leer la imagen con error handling */
 void read_image(char *input_path)
 {
     input = (unsigned char *)stbi_load(input_path, &width, &height, &channels, 0);
@@ -30,6 +32,9 @@ void read_image(char *input_path)
 }
 
 
+/* Para guardar el resultado en los 3 formatos disponibles usamos la siguiente función, 
+ * que detecta la extensión deseada y usa la función del backend correspondiente.
+ * Si no hay un match con las opciones disponibles, retorna un jpg */
 void write_output(char *output_path, int output_channels)
 {
     char *dot = strrchr(output_path, '.');
@@ -52,6 +57,8 @@ void write_output(char *output_path, int output_channels)
     stbi_image_free(output);
 }
 
+
+/* */
 int main(int argc, char **argv)
 {
     //leer imagen
@@ -112,4 +119,5 @@ int main(int argc, char **argv)
 // Referencias
 //
 // [1] El tutorial que seguí se encuentra en el link https://solarianprogrammer.com/2019/06/10/c-programming-reading-writing-images-stb_image-libraries/
-// Se editó para que sea modular y más bonito, pero esto va en progreso
+// Se editó para que sea modular y más bonito
+

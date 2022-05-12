@@ -1,0 +1,320 @@
+SciDAVis 2.2.7 project file
+<scripting-lang>	muParser
+<windows>	9
+<table>
+4415
+<table creation_time="2022-26-04 21:18:21:000" caption_spec="%n%C{ - }%c" name="720p" columns="4" rows="32"><comment><![CDATA[]]></comment><column creation_time="2022-26-04 21:18:21:778" caption_spec="%n%C{ - }%c" name="Hilos" type="TypeDouble" mode="Numeric" plot_designation="X"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 21:18:21:778" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 21:18:21:778" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="0" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">1.0000000000000000e+00</row><row type="TypeDouble" index="1" invalid="no">2.0000000000000000e+00</row><row type="TypeDouble" index="2" invalid="no">4.0000000000000000e+00</row><row type="TypeDouble" index="3" invalid="no">8.0000000000000000e+00</row><row type="TypeDouble" index="4" invalid="no">1.6000000000000000e+01</row></column><column creation_time="2022-26-04 21:18:21:779" caption_spec="%n%C{ - }%c" name="Tiempo [s]" type="TypeDouble" mode="Numeric" plot_designation="Y"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 21:18:21:779" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 21:18:21:779" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">3.9667333333333298e-03</row><row type="TypeDouble" index="1" invalid="no">4.8187999999999998e-03</row><row type="TypeDouble" index="2" invalid="no">2.7671666666666699e-03</row><row type="TypeDouble" index="3" invalid="no">3.7293999999999999e-03</row><row type="TypeDouble" index="4" invalid="no">4.5596666666666702e-03</row></column><column creation_time="2022-26-04 21:19:29:143" caption_spec="%n%C{ - }%c" name="Tiempo-Std" type="TypeDouble" mode="Numeric" plot_designation="yErr"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 21:19:29:143" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 21:19:29:143" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">2.0556464430564300e-04</row><row type="TypeDouble" index="1" invalid="no">2.0194253194138299e-04</row><row type="TypeDouble" index="2" invalid="no">8.6030901959435499e-05</row><row type="TypeDouble" index="3" invalid="no">4.0699568751421998e-04</row><row type="TypeDouble" index="4" invalid="no">6.5259240769006196e-04</row></column><column creation_time="2022-27-04 00:33:27:373" caption_spec="%n%C{ - }%c" name="Speedup" type="TypeDouble" mode="Numeric" plot_designation="Y"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-27-04 00:33:27:373" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-27-04 00:33:27:373" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><formula start_row="0" end_row="4">0.0040626/col(&quot;Tiempo [s]&quot;)</formula><row type="TypeDouble" index="0" invalid="no">1.0241676610477146e+00</row><row type="TypeDouble" index="1" invalid="no">8.4307296422345823e-01</row><row type="TypeDouble" index="2" invalid="no">1.4681443112690462e+00</row><row type="TypeDouble" index="3" invalid="no">1.0893441304231246e+00</row><row type="TypeDouble" index="4" invalid="no">8.9098618320052581e-01</row></column><column_width column="0">120</column_width><column_width column="1">120</column_width><column_width column="2">204</column_width><column_width column="3">120</column_width></table>
+geometry	1081	24	822	300	
+
+</table>
+<table>
+4427
+<table creation_time="2022-26-04 22:54:08:000" caption_spec="%n%C{ - }%c" name="1080p" columns="4" rows="30"><comment><![CDATA[]]></comment><column creation_time="2022-26-04 22:54:08:106" caption_spec="%n%C{ - }%c" name="Hilos" type="TypeDouble" mode="Numeric" plot_designation="X"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 22:54:08:106" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 22:54:08:106" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="0" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">1.0000000000000000e+00</row><row type="TypeDouble" index="1" invalid="no">2.0000000000000000e+00</row><row type="TypeDouble" index="2" invalid="no">4.0000000000000000e+00</row><row type="TypeDouble" index="3" invalid="no">8.0000000000000000e+00</row><row type="TypeDouble" index="4" invalid="no">1.6000000000000000e+01</row></column><column creation_time="2022-26-04 22:54:08:128" caption_spec="%n%C{ - }%c" name="Tiempo [s]" type="TypeDouble" mode="Numeric" plot_designation="Y"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 22:54:08:128" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 22:54:08:128" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">8.2961333333333304e-03</row><row type="TypeDouble" index="1" invalid="no">9.9921666666666700e-03</row><row type="TypeDouble" index="2" invalid="no">1.0760799999999999e-02</row><row type="TypeDouble" index="3" invalid="no">7.5156333333333304e-03</row><row type="TypeDouble" index="4" invalid="no">8.5102666666666705e-03</row></column><column creation_time="2022-26-04 22:55:28:170" caption_spec="%n%C{ - }%c" name="Tiempo-Std" type="TypeDouble" mode="Numeric" plot_designation="yErr"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 22:55:28:170" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 22:55:28:170" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">4.0488088783410499e-04</row><row type="TypeDouble" index="1" invalid="no">6.0091723472413896e-04</row><row type="TypeDouble" index="2" invalid="no">1.2841118868428200e-03</row><row type="TypeDouble" index="3" invalid="no">3.4279092686392599e-04</row><row type="TypeDouble" index="4" invalid="no">6.9779741815344199e-04</row></column><column creation_time="2022-27-04 00:32:00:083" caption_spec="%n%C{ - }%c" name="Speedup" type="TypeDouble" mode="Numeric" plot_designation="Y"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-27-04 00:32:00:083" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-27-04 00:32:00:083" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><formula start_row="0" end_row="4">0.008466199999999998/col(&quot;Tiempo [s]&quot;)</formula><row type="TypeDouble" index="0" invalid="no">1.0204995098118002e+00</row><row type="TypeDouble" index="1" invalid="no">8.4728370556936217e-01</row><row type="TypeDouble" index="2" invalid="no">7.8676306594305245e-01</row><row type="TypeDouble" index="3" invalid="no">1.1264785846391303e+00</row><row type="TypeDouble" index="4" invalid="no">9.9482194055807038e-01</row></column><column_width column="0">120</column_width><column_width column="1">120</column_width><column_width column="2">203</column_width><column_width column="3">120</column_width></table>
+geometry	1081	326	821	300	
+
+</table>
+<table>
+5929
+<table creation_time="2022-26-04 23:02:59:000" caption_spec="%n%C{ - }%c" name="4k" columns="4" rows="30"><comment><![CDATA[]]></comment><column creation_time="2022-26-04 23:02:59:413" caption_spec="%n%C{ - }%c" name="Hilos" type="TypeDouble" mode="Numeric" plot_designation="X"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 23:02:59:413" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 23:02:59:413" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="0" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">1.0000000000000000e+00</row><row type="TypeDouble" index="1" invalid="no">2.0000000000000000e+00</row><row type="TypeDouble" index="2" invalid="no">4.0000000000000000e+00</row><row type="TypeDouble" index="3" invalid="no">8.0000000000000000e+00</row><row type="TypeDouble" index="4" invalid="no">1.6000000000000000e+01</row></column><column creation_time="2022-26-04 23:02:59:413" caption_spec="%n%C{ - }%c" name="Tiempo [s]" type="TypeDouble" mode="Numeric" plot_designation="Y"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 23:02:59:413" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 23:02:59:413" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">3.4529666666666702e-02</row><row type="TypeDouble" index="1" invalid="no">4.1775066666666701e-02</row><row type="TypeDouble" index="2" invalid="no">2.3772399999999999e-02</row><row type="TypeDouble" index="3" invalid="no">2.4070899999999999e-02</row><row type="TypeDouble" index="4" invalid="no">1.9056066666666701e-02</row></column><column creation_time="2022-26-04 23:03:10:226" caption_spec="%n%C{ - }%c" name="Tiempo-Std" type="TypeDouble" mode="Numeric" plot_designation="yErr"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-26-04 23:03:10:226" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-26-04 23:03:10:226" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><row type="TypeDouble" index="0" invalid="no">9.6304070645993501e-04</row><row type="TypeDouble" index="1" invalid="no">2.0518381150994099e-03</row><row type="TypeDouble" index="2" invalid="no">1.4699459900938900e-03</row><row type="TypeDouble" index="3" invalid="no">1.3819461127774399e-03</row><row type="TypeDouble" index="4" invalid="no">1.5452712055980900e-03</row></column><column creation_time="2022-27-04 00:19:32:657" caption_spec="%n%C{ - }%c" name="Speedup" type="TypeDouble" mode="Numeric" plot_designation="Y"><comment><![CDATA[]]></comment><input_filter><simple_filter creation_time="2022-27-04 00:19:32:657" caption_spec="%n%C{ - }%c" name="InputFilter" filter_name="String2DoubleFilter"><comment><![CDATA[]]></comment></simple_filter></input_filter><output_filter><simple_filter creation_time="2022-27-04 00:19:32:657" caption_spec="%n%C{ - }%c" name="OutputFilter" format="f" digits="14" filter_name="Double2StringFilter"><comment><![CDATA[]]></comment></simple_filter></output_filter><formula start_row="0" end_row="24">0.0365906/col(&quot;Tiempo [s]&quot;)</formula><row type="TypeDouble" index="0" invalid="no">1.0596858739827577e+00</row><row type="TypeDouble" index="1" invalid="no">8.7589566982538158e-01</row><row type="TypeDouble" index="2" invalid="no">1.5392051286365702e+00</row><row type="TypeDouble" index="3" invalid="no">1.5201176524350981e+00</row><row type="TypeDouble" index="4" invalid="no">1.9201549112968364e+00</row><row type="TypeDouble" index="5" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="6" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="7" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="8" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="9" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="10" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="11" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="12" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="13" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="14" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="15" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="16" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="17" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="18" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="19" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="20" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="21" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="22" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="23" invalid="yes">0.0000000000000000e+00</row><row type="TypeDouble" index="24" invalid="yes">0.0000000000000000e+00</row></column><column_width column="0">120</column_width><column_width column="1">120</column_width><column_width column="2">203</column_width><column_width column="3">120</column_width></table>
+geometry	1083	622	821	300	
+
+</table>
+<multiLayer>
+Graph-720p	1	1	Tuesday, April 26, 2022 10:51:03 PM -05
+geometry	792	806	400	300	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	405	267
+Alignement	0	0
+<graph>
+ggeometry	4	4	384	245
+PlotTitle	Hilos vs Tiempo, 720p	#ff000000	4
+<Antialiasing>1</Antialiasing>
+Background	#ffffffff	255
+Margin	0
+Border	1	#ff2e3436
+grid	0	0	0	0	#ff0000ff	0	0	#ffa0a0a4	2	0	#ff0000ff	0	0	#ffa0a0a4	2	0	0	0	2	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Hilos	Tiempo [s]			
+AxesTitleColors	#ff000000	#ff000000	#ff000000	#ff000000	
+AxesTitleAlignment	4	4	4	4
+TitleFont	Cantarell	13	75	0	0	0
+ScaleFont0	Cantarell	11	75	0	0	0
+ScaleFont1	Cantarell	11	75	0	0	0
+ScaleFont2	Cantarell	11	75	0	0	0
+ScaleFont3	Cantarell	11	75	0	0	0
+AxisFont0	Cantarell	11	50	0	0	0
+AxisFont1	Cantarell	11	50	0	0	0
+AxisFont2	Cantarell	11	50	0	0	0
+AxisFont3	Cantarell	11	50	0	0	0
+EnabledTickLabels	1	1	1	1	
+AxesColors	#ff000000	#ff000000	#ff000000	#ff000000
+AxesNumberColors	#ff2e3436	#ff2e3436	#ff2e3436	#ff2e3436
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffffff	255
+curve	720p_Hilos	720p_Tiempo [s]	2	1	#ff000000	0	1	7	1	#ff000000	#ff000000	0	#ff000000	0	1	0	64		2	0	0	4	1
+ErrorBars	1	720p_Hilos	720p_Tiempo [s]	720p_Tiempo-Std	1	8	#ff000000	1	1	1
+scale	0	0.001	0.006	0	6	5	0	0
+scale	1	0.065	0.09	0	8	5	0	0
+scale	2	0	18	0	10	1	0	0
+scale	3	0	18	0	8	5	0	0
+LabelsFormat	0	4	0	4	0	4	0	4	
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1	
+MinorTicks	1	1	1	1	
+TicksLength	5	9
+DrawAxesBackbone	1
+AxesLineWidth	1
+LabelsRotation	0	0
+</graph>
+</multiLayer>
+<multiLayer>
+Graph-1080p	1	1	Tuesday, April 26, 2022 10:57:19 PM -05
+geometry	391	809	400	300	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	415	267
+Alignement	0	0
+<graph>
+ggeometry	4	4	384	245
+PlotTitle	Hilos vs Tiempo, 1080p	#ff000000	4
+<Antialiasing>1</Antialiasing>
+Background	#ffffffff	255
+Margin	0
+Border	1	#ff2e3436
+grid	0	0	0	0	#ff0000ff	0	0	#ffa0a0a4	2	0	#ff0000ff	0	0	#ffa0a0a4	2	0	0	0	2	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Hilos	Tiempo [s]			
+AxesTitleColors	#ff000000	#ff000000	#ff000000	#ff000000	
+AxesTitleAlignment	4	4	4	4
+TitleFont	Cantarell	13	75	0	0	0
+ScaleFont0	Cantarell	11	75	0	0	0
+ScaleFont1	Cantarell	11	75	0	0	0
+ScaleFont2	Cantarell	11	75	0	0	0
+ScaleFont3	Cantarell	11	75	0	0	0
+AxisFont0	Cantarell	11	50	0	0	0
+AxisFont1	Cantarell	11	50	0	0	0
+AxisFont2	Cantarell	11	50	0	0	0
+AxisFont3	Cantarell	11	50	0	0	0
+EnabledTickLabels	1	1	1	1	
+AxesColors	#ff000000	#ff000000	#ff000000	#ff000000
+AxesNumberColors	#ff2e3436	#ff2e3436	#ff2e3436	#ff2e3436
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffffff	255
+curve	1080p_Hilos	1080p_Tiempo [s]	2	1	#ff000000	0	1	7	1	#ff000000	#ff000000	0	#ff000000	0	1	0	64		2	0	0	29	1
+ErrorBars	1	1080p_Hilos	1080p_Tiempo [s]	1080p_Tiempo-Std	1	8	#ff000000	1	1	1
+scale	0	0.004	0.014	0	8	5	0	0
+scale	1	0.2	0.26	0	8	5	0	0
+scale	2	0	18	0	10	1	0	0
+scale	3	0	18	0	8	5	0	0
+LabelsFormat	0	4	0	4	0	4	0	4	
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1	
+MinorTicks	1	1	1	1	
+TicksLength	5	9
+DrawAxesBackbone	1
+AxesLineWidth	1
+LabelsRotation	0	0
+</graph>
+</multiLayer>
+<multiLayer>
+Graph-4k	1	1	Tuesday, April 26, 2022 11:06:29 PM -05
+geometry	0	807	400	300	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	414	267
+Alignement	0	0
+<graph>
+ggeometry	4	4	384	245
+PlotTitle	Hilos vs Tiempo, 4k	#ff000000	4
+<Antialiasing>1</Antialiasing>
+Background	#ffffffff	255
+Margin	0
+Border	1	#ff2e3436
+grid	0	0	0	0	#ff0000ff	0	0	#ffa0a0a4	2	0	#ff0000ff	0	0	#ffa0a0a4	2	0	0	0	2	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Hilos	Tiempo [s]			
+AxesTitleColors	#ff000000	#ff000000	#ff000000	#ff000000	
+AxesTitleAlignment	4	4	4	4
+TitleFont	Cantarell	13	75	0	0	0
+ScaleFont0	Cantarell	11	75	0	0	0
+ScaleFont1	Cantarell	11	75	0	0	0
+ScaleFont2	Cantarell	11	75	0	0	0
+ScaleFont3	Cantarell	11	75	0	0	0
+AxisFont0	Cantarell	11	50	0	0	0
+AxisFont1	Cantarell	11	50	0	0	0
+AxisFont2	Cantarell	11	50	0	0	0
+AxisFont3	Cantarell	11	50	0	0	0
+EnabledTickLabels	1	1	1	1	
+AxesColors	#ff000000	#ff000000	#ff000000	#ff000000
+AxesNumberColors	#ff2e3436	#ff2e3436	#ff2e3436	#ff2e3436
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffffff	255
+curve	4k_Hilos	4k_Tiempo [s]	2	1	#ff000000	0	1	7	1	#ff000000	#ff000000	0	#ff000000	0	1	0	64		2	0	0	29	1
+ErrorBars	1	4k_Hilos	4k_Tiempo [s]	4k_Tiempo-Std	1	8	#ff000000	1	1	1
+scale	0	0.015	0.045	0	8	5	0	0
+scale	1	0.78	0.85	0	8	5	0	0
+scale	2	0	18	0	10	1	0	0
+scale	3	0	18	0	8	5	0	0
+LabelsFormat	0	4	0	4	0	4	0	4	
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1	
+MinorTicks	1	1	1	1	
+TicksLength	5	9
+DrawAxesBackbone	1
+AxesLineWidth	1
+LabelsRotation	0	0
+</graph>
+</multiLayer>
+<multiLayer>
+Speedup-4k	1	1	Wednesday, April 27, 2022 12:27:41 AM -05
+geometry	2	15	500	400	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	406	267
+Alignement	0	0
+<graph>
+ggeometry	5	5	482	342
+PlotTitle	Speedup 4k	#ff000000	4
+<Antialiasing>1</Antialiasing>
+Background	#ffffffff	255
+Margin	0
+Border	1	#ff2e3436
+grid	0	0	0	0	#ff0000ff	0	0	#ffa0a0a4	2	0	#ff0000ff	0	0	#ffa0a0a4	2	0	0	0	2	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Hilos	Speedup			
+AxesTitleColors	#ff000000	#ff000000	#ff000000	#ff000000	
+AxesTitleAlignment	4	4	4	4
+TitleFont	Cantarell	13	75	0	0	0
+ScaleFont0	Cantarell	11	75	0	0	0
+ScaleFont1	Cantarell	11	75	0	0	0
+ScaleFont2	Cantarell	11	75	0	0	0
+ScaleFont3	Cantarell	11	75	0	0	0
+AxisFont0	Cantarell	11	50	0	0	0
+AxisFont1	Cantarell	11	50	0	0	0
+AxisFont2	Cantarell	11	50	0	0	0
+AxisFont3	Cantarell	11	50	0	0	0
+EnabledTickLabels	1	1	1	1	
+AxesColors	#ff000000	#ff000000	#ff000000	#ff000000
+AxesNumberColors	#ff2e3436	#ff2e3436	#ff2e3436	#ff2e3436
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffffff	255
+curve	4k_Hilos	4k_Speedup	2	1	#ff000000	0	1	7	1	#ff000000	#ff000000	0	#ff000000	0	1	0	64		2	0	1	4	1
+scale	0	0	2	0	7	5	0	0
+scale	1	0	2	0	8	5	0	0
+scale	2	0	18	0	10	1	0	0
+scale	3	0	18	0	8	5	0	0
+LabelsFormat	0	4	0	4	0	4	0	4	
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1	
+MinorTicks	1	1	1	1	
+TicksLength	5	9
+DrawAxesBackbone	1
+AxesLineWidth	1
+LabelsRotation	0	0
+</graph>
+</multiLayer>
+<multiLayer>
+Speedup-1080p	1	1	Wednesday, April 27, 2022 12:34:11 AM -05
+geometry	549	17	500	400	
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	414	267
+Alignement	0	0
+<graph>
+ggeometry	5	5	482	342
+PlotTitle	Speedup-1080p	#ff000000	4
+<Antialiasing>1</Antialiasing>
+Background	#ffffffff	255
+Margin	0
+Border	1	#ff2e3436
+grid	0	0	0	0	#ff0000ff	0	0	#ffa0a0a4	2	0	#ff0000ff	0	0	#ffa0a0a4	2	0	0	0	2	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Hilos	Speedup			
+AxesTitleColors	#ff000000	#ff000000	#ff000000	#ff000000	
+AxesTitleAlignment	4	4	4	4
+TitleFont	Cantarell	13	75	0	0	0
+ScaleFont0	Cantarell	11	75	0	0	0
+ScaleFont1	Cantarell	11	75	0	0	0
+ScaleFont2	Cantarell	11	75	0	0	0
+ScaleFont3	Cantarell	11	75	0	0	0
+AxisFont0	Cantarell	11	50	0	0	0
+AxisFont1	Cantarell	11	50	0	0	0
+AxisFont2	Cantarell	11	50	0	0	0
+AxisFont3	Cantarell	11	50	0	0	0
+EnabledTickLabels	1	1	1	1	
+AxesColors	#ff000000	#ff000000	#ff000000	#ff000000
+AxesNumberColors	#ff2e3436	#ff2e3436	#ff2e3436	#ff2e3436
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffffff	255
+curve	1080p_Hilos	1080p_Speedup	2	1	#ff000000	0	1	7	1	#ff000000	#ff000000	0	#ff000000	0	1	0	64		2	0	1	4	1
+scale	0	0	1.3	0	6	5	0	0
+scale	1	0	1.3	0	8	5	0	0
+scale	2	0	18	0	10	1	0	0
+scale	3	0	18	0	8	5	0	0
+LabelsFormat	0	4	0	4	0	4	0	4	
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1	
+MinorTicks	1	1	1	1	
+TicksLength	5	9
+DrawAxesBackbone	1
+AxesLineWidth	1
+LabelsRotation	0	0
+</graph>
+</multiLayer>
+<multiLayer>
+Speedup-720p	1	1	Wednesday, April 27, 2022 12:36:23 AM -05
+geometry	307	414	500	400	active
+WindowLabel		2
+Margins	5	5	5	5
+Spacing	5	5
+LayerCanvasSize	414	267
+Alignement	0	0
+<graph>
+ggeometry	5	5	482	342
+PlotTitle	Speedup-720p	#ff000000	4
+<Antialiasing>1</Antialiasing>
+Background	#ffffffff	255
+Margin	0
+Border	1	#ff2e3436
+grid	0	0	0	0	#ff0000ff	0	0	#ffa0a0a4	2	0	#ff0000ff	0	0	#ffa0a0a4	2	0	0	0	2	0
+EnabledAxes	1	0	1	0	
+AxesTitles	Hilos	Speedup			
+AxesTitleColors	#ff000000	#ff000000	#ff000000	#ff000000	
+AxesTitleAlignment	4	4	4	4
+TitleFont	Cantarell	13	75	0	0	0
+ScaleFont0	Cantarell	11	75	0	0	0
+ScaleFont1	Cantarell	11	75	0	0	0
+ScaleFont2	Cantarell	11	75	0	0	0
+ScaleFont3	Cantarell	11	75	0	0	0
+AxisFont0	Cantarell	11	50	0	0	0
+AxisFont1	Cantarell	11	50	0	0	0
+AxisFont2	Cantarell	11	50	0	0	0
+AxisFont3	Cantarell	11	50	0	0	0
+EnabledTickLabels	1	1	1	1	
+AxesColors	#ff000000	#ff000000	#ff000000	#ff000000
+AxesNumberColors	#ff2e3436	#ff2e3436	#ff2e3436	#ff2e3436
+AxesBaseline	0	0	0	0	
+CanvasBackground	#ffffffff	255
+curve	720p_Hilos	720p_Speedup	2	1	#ff000000	0	1	7	1	#ff000000	#ff000000	0	#ff000000	0	1	0	64		2	0	1	4	1
+scale	0	0	1.6	0	5	5	0	0
+scale	1	0	1.6	0	8	5	0	0
+scale	2	0	18	0	10	1	0	0
+scale	3	0	18	0	8	5	0	0
+LabelsFormat	0	4	0	4	0	4	0	4	
+AxisType	0	0	0	0	
+MajorTicks	1	1	1	1	
+MinorTicks	1	1	1	1	
+TicksLength	5	9
+DrawAxesBackbone	1
+AxesLineWidth	1
+LabelsRotation	0	0
+</graph>
+</multiLayer>
+<log>
+</log>

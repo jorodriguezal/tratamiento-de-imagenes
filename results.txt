@@ -1,158 +1,144 @@
 
-Executing the filter for image 1080.jpg with 1 threads:
-Loaded image with a width of 711px, a height of 400px and 3 channels
-Seconds taken: 0.194365
+======================
+Sequential
+======================
 
-Executing the filter for image 1080.jpg with 2 threads:
-Loaded image with a width of 711px, a height of 400px and 3 channels
-Seconds taken: 0.031444
+Executing the filter for image 1080.jpg
+Loaded image with a width of 1920px, a height of 1080px and 3 channels
+Seconds taken: 0.218086
 
-Executing the filter for image 1080.jpg with 4 threads:
-Loaded image with a width of 711px, a height of 400px and 3 channels
-Seconds taken: 0.029732
-
-Executing the filter for image 1080.jpg with 8 threads:
-Loaded image with a width of 711px, a height of 400px and 3 channels
-Seconds taken: 0.032953
-
-Executing the filter for image 1080.jpg with 16 threads:
-Loaded image with a width of 711px, a height of 400px and 3 channels
-Seconds taken: 0.028791
-
-Executing the filter for image 4k.jpg with 1 threads:
-Loaded image with a width of 5472px, a height of 3648px and 3 channels
-Seconds taken: 1.644612
-
-Executing the filter for image 4k.jpg with 2 threads:
-Loaded image with a width of 5472px, a height of 3648px and 3 channels
-Seconds taken: 1.586895
-
-Executing the filter for image 4k.jpg with 4 threads:
-Loaded image with a width of 5472px, a height of 3648px and 3 channels
-Seconds taken: 1.583156
-
-Executing the filter for image 4k.jpg with 8 threads:
-Loaded image with a width of 5472px, a height of 3648px and 3 channels
-Seconds taken: 1.552992
-
-Executing the filter for image 4k.jpg with 16 threads:
-Loaded image with a width of 5472px, a height of 3648px and 3 channels
-Seconds taken: 1.562090
-
-Executing the filter for image 720.jpg with 1 threads:
-Loaded image with a width of 1280px, a height of 720px and 3 channels
-Seconds taken: 0.084896
-
-Executing the filter for image 720.jpg with 2 threads:
-Loaded image with a width of 1280px, a height of 720px and 3 channels
-Seconds taken: 0.072099
-
-Executing the filter for image 720.jpg with 4 threads:
-Loaded image with a width of 1280px, a height of 720px and 3 channels
-Seconds taken: 0.069630
-
-Executing the filter for image 720.jpg with 8 threads:
-Loaded image with a width of 1280px, a height of 720px and 3 channels
-Seconds taken: 0.071747
-
-Executing the filter for image 720.jpg with 16 threads:
-Loaded image with a width of 1280px, a height of 720px and 3 channels
-Seconds taken: 0.069272
-
-Executing the filter for image cow_4k.jpg with 1 threads:
+Executing the filter for image 4k.jpg
 Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.607907
+Seconds taken: 0.787734
 
-Executing the filter for image cow_4k.jpg with 2 threads:
-Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.714907
+Executing the filter for image 720.jpg
+Loaded image with a width of 1280px, a height of 800px and 3 channels
+Seconds taken: 0.067164
 
-Executing the filter for image cow_4k.jpg with 4 threads:
-Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.576214
-
-Executing the filter for image cow_4k.jpg with 8 threads:
-Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.567126
-
-Executing the filter for image cow_4k.jpg with 16 threads:
-Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.582368
-
-Executing the filter for image cute_cow.jpg with 1 threads:
-Loaded image with a width of 570px, a height of 570px and 3 channels
-Seconds taken: 0.044326
-
-Executing the filter for image cute_cow.jpg with 2 threads:
-Loaded image with a width of 570px, a height of 570px and 3 channels
-Seconds taken: 0.036132
-
-Executing the filter for image cute_cow.jpg with 4 threads:
-Loaded image with a width of 570px, a height of 570px and 3 channels
-Seconds taken: 0.025475
-
-Executing the filter for image cute_cow.jpg with 8 threads:
-
-Executing the filter for image cute_cow.jpg with 16 threads:
-Loaded image with a width of 570px, a height of 570px and 3 channels
-Seconds taken: 0.030021
+======================
+Parallel pthread
+======================
 
 Executing the filter for image 1080.jpg with 1 threads:
 Loaded image with a width of 1920px, a height of 1080px and 3 channels
-Seconds taken: 0.237849
+Seconds taken: 0.020884
 
 Executing the filter for image 1080.jpg with 2 threads:
 Loaded image with a width of 1920px, a height of 1080px and 3 channels
-Seconds taken: 0.220005
+Seconds taken: 0.011517
 
 Executing the filter for image 1080.jpg with 4 threads:
 Loaded image with a width of 1920px, a height of 1080px and 3 channels
-Seconds taken: 0.214965
+Seconds taken: 0.004881
 
 Executing the filter for image 1080.jpg with 8 threads:
 Loaded image with a width of 1920px, a height of 1080px and 3 channels
-Seconds taken: 0.217857
+Seconds taken: 0.004795
 
 Executing the filter for image 1080.jpg with 16 threads:
 Loaded image with a width of 1920px, a height of 1080px and 3 channels
-Seconds taken: 0.216127
+Seconds taken: 0.004279
 
 Executing the filter for image 4k.jpg with 1 threads:
 Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.810692
+Seconds taken: 0.067383
 
 Executing the filter for image 4k.jpg with 2 threads:
 Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.814782
+Seconds taken: 0.038310
 
 Executing the filter for image 4k.jpg with 4 threads:
 Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.793801
+Seconds taken: 0.021380
 
 Executing the filter for image 4k.jpg with 8 threads:
 Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.780344
+Seconds taken: 0.019628
 
 Executing the filter for image 4k.jpg with 16 threads:
 Loaded image with a width of 3840px, a height of 2160px and 3 channels
-Seconds taken: 0.782269
+Seconds taken: 0.012595
 
 Executing the filter for image 720.jpg with 1 threads:
 Loaded image with a width of 1280px, a height of 800px and 3 channels
-Seconds taken: 0.074715
+Seconds taken: 0.006950
 
 Executing the filter for image 720.jpg with 2 threads:
 Loaded image with a width of 1280px, a height of 800px and 3 channels
-Seconds taken: 0.068824
+Seconds taken: 0.004553
 
 Executing the filter for image 720.jpg with 4 threads:
 Loaded image with a width of 1280px, a height of 800px and 3 channels
-Seconds taken: 0.067296
+Seconds taken: 0.002498
 
 Executing the filter for image 720.jpg with 8 threads:
 Loaded image with a width of 1280px, a height of 800px and 3 channels
-Seconds taken: 0.066498
+Seconds taken: 0.002272
 
 Executing the filter for image 720.jpg with 16 threads:
 Loaded image with a width of 1280px, a height of 800px and 3 channels
-Seconds taken: 0.067062
+Seconds taken: 0.002579
+
+======================
+Parallel Open MP
+======================
+
+Executing the filter for image 1080.jpg with 1 threads:
+Loaded image with a width of 1920px, a height of 1080px and 3 channels
+Seconds taken: 0.008593
+
+Executing the filter for image 1080.jpg with 2 threads:
+Loaded image with a width of 1920px, a height of 1080px and 3 channels
+Seconds taken: 0.009115
+
+Executing the filter for image 1080.jpg with 4 threads:
+Loaded image with a width of 1920px, a height of 1080px and 3 channels
+Seconds taken: 0.004662
+
+Executing the filter for image 1080.jpg with 8 threads:
+Loaded image with a width of 1920px, a height of 1080px and 3 channels
+Seconds taken: 0.005397
+
+Executing the filter for image 1080.jpg with 16 threads:
+Loaded image with a width of 1920px, a height of 1080px and 3 channels
+Seconds taken: 0.004118
+
+Executing the filter for image 4k.jpg with 1 threads:
+Loaded image with a width of 3840px, a height of 2160px and 3 channels
+Seconds taken: 0.035414
+
+Executing the filter for image 4k.jpg with 2 threads:
+Loaded image with a width of 3840px, a height of 2160px and 3 channels
+Seconds taken: 0.051414
+
+Executing the filter for image 4k.jpg with 4 threads:
+Loaded image with a width of 3840px, a height of 2160px and 3 channels
+Seconds taken: 0.022675
+
+Executing the filter for image 4k.jpg with 8 threads:
+Loaded image with a width of 3840px, a height of 2160px and 3 channels
+Seconds taken: 0.020279
+
+Executing the filter for image 4k.jpg with 16 threads:
+Loaded image with a width of 3840px, a height of 2160px and 3 channels
+Seconds taken: 0.012931
+
+Executing the filter for image 720.jpg with 1 threads:
+Loaded image with a width of 1280px, a height of 800px and 3 channels
+Seconds taken: 0.003578
+
+Executing the filter for image 720.jpg with 2 threads:
+Loaded image with a width of 1280px, a height of 800px and 3 channels
+Seconds taken: 0.005354
+
+Executing the filter for image 720.jpg with 4 threads:
+Loaded image with a width of 1280px, a height of 800px and 3 channels
+Seconds taken: 0.002645
+
+Executing the filter for image 720.jpg with 8 threads:
+Loaded image with a width of 1280px, a height of 800px and 3 channels
+Seconds taken: 0.002142
+
+Executing the filter for image 720.jpg with 16 threads:
+Loaded image with a width of 1280px, a height of 800px and 3 channels
+Seconds taken: 0.002284
