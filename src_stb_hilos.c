@@ -66,10 +66,12 @@ int main(int argc, char **argv)
     //Número total de procesos
     int world_size;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+    printf("World size = %i\n", world_size);
 
     // Número del hilo
     int world_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+    printf("World Rank = %i\n", world_rank);
 
     //Path de la imagen
     read_image(*(argv + 1));
@@ -79,7 +81,9 @@ int main(int argc, char **argv)
 
     //Tamaño de matrices
 	input_size = width * height * channels/world_size;
+    printf("Input size = %u\n", input_size);
     output_size = width * height * gray_channels/world_size;
+    printf("Output size = %u\n", output_size);
 
     //Toma inicial de tiempos
     struct timeval tval_before, tval_after, tval_result;
