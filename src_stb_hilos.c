@@ -61,7 +61,7 @@ void write_output(char *output_path, int output_channels) {
 
 int main(int argc, char **argv) 
 { 
-    printf("Holi");    
+    printf("Holi\n");    
 
     //Inicializar MPI
     MPI_Init(&argc, &argv);
@@ -87,15 +87,20 @@ int main(int argc, char **argv)
     printf("Input size = %u\n", input_size);
     output_size = width * height * gray_channels/world_size;
     printf("Output size = %u\n", output_size);
+
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Bcast(input, input_size*world_size, MPI_UNSIGNED_CHAR,0 ,MPI_COMM_WORLD);
 	
-    printf("Toma de tiempos...");
+    //printf("Toma de tiempos...");
     //Toma inicial de tiempos
-    struct timeval tval_before, tval_after, tval_result;
-    gettimeofday(&tval_before, NULL);
-    printf("Toma de tiempos incial exitosa...");
+    //struct timeval tval_before, tval_after, tval_result;
+    //gettimeofday(&tval_before, NULL);
+    //printf("Toma de tiempos incial exitosa...");
+
     //Asignar output
     printf("Output a asignar...");
-    output = (unsigned char *)malloc(output_size*world_size);
+    output = (unsigned char *)malloc(output_size*world_size*sizeof(unsigned char*));
     printf("Output Asignado");
     output_path=*(argv + 2);
 
@@ -107,12 +112,16 @@ int main(int argc, char **argv)
 
     gray_filter(&world_size);
 
-	write_output(output_path, gray_channels);
+    MPI_Barrier(MPI_COMM_WORLD); 
+    MPI_Gather( output, output_size, MPI_UNSIGNED_CHAR, output_size*world_size, output_size, MPI_UNSIGNED_CHAR, 0, MPI_COMM_WORLD);
 
-
-    gettimeofday(&tval_after, NULL);
-    timersub(&tval_after, &tval_before, &tval_result);
-    printf("Seconds taken: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
+    if(world_rank=0){
+        write_output(output_path, gray_channels);
+    }
+	
+    //gettimeofday(&tval_after, NULL);
+    //timersub(&tval_after, &tval_before, &tval_result);
+    //printf("Seconds taken: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
 
     stbi_image_free(input);
     stbi_image_free(output);
