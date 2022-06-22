@@ -3,6 +3,8 @@
 #include <sys/time.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <mpi.h>
+#include <omp.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image/stb_image.h"
@@ -58,32 +60,43 @@ void write_output(char *output_path, int output_channels) {
 
 int main(int argc, char **argv) 
 { 
-	read_image(*(argv + 1));
-	int threads = atoi(*(argv + 3));
-    pthread_t ar_threads[threads]; 
-	gray_channels = channels == 4 ? 2 : 1;
-	input_size = width * height * channels/threads;
-    output_size = width * height * gray_channels/threads;
 
+    //Inicializar MPI
+    MPI_Init(&argc, &argv);
+
+    //Número total de procesos
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+    // Número del hilo
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
+    //Path de la imagen
+    read_image(*(argv + 1));
+
+    //Número de canales
+	gray_channels = channels == 4 ? 2 : 1;
+
+    //Tamaño de matrices
+	input_size = width * height * channels/world_size;
+    output_size = width * height * gray_channels/world_size;
+
+    //Toma inicial de tiempos
     struct timeval tval_before, tval_after, tval_result;
     gettimeofday(&tval_before, NULL);
 
-
-    output = (unsigned char *)malloc(output_size*threads);
+    //Asignar output
+    output = (unsigned char *)malloc(output_size*world_size);
     output_path=*(argv + 2);
+
+    //Manejo de erores
     if(output == NULL) {
         perror("Unable to allocate memory for the gray image");
         exit(1);
     }
 
-    for (int i=0; i < threads; i++) { 
-        int *n = malloc(sizeof(int));
-        *n = i;
-        pthread_create(&ar_threads[i], NULL, gray_filter, n);
-    }
-
-    for (int i=0; i < threads; i++)
-        pthread_join(ar_threads[i], NULL);
+    gray_filter(%world_size);
 
 	write_output(output_path, gray_channels);
 
