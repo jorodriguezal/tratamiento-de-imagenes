@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-#include <pthread.h>
 #include <unistd.h>
 #include <mpi.h>
 #include <omp.h>
@@ -96,7 +95,7 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    gray_filter(%world_size);
+    gray_filter(&world_size);
 
 	write_output(output_path, gray_channels);
 
