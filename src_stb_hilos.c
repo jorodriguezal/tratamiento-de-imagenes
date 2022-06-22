@@ -32,6 +32,8 @@ void read_image(char *input_path) {
 
 void* gray_filter(void* i) {
     int n = *(int *)i;
+    n++;
+    printf("N = %i", n);
     int inp= input_size*(n);
     int oup=output_size*(n);    
     for(unsigned char *p = input + inp, *pg = output + oup; p != input + input_size*(n+1); p += channels, pg += gray_channels) {
@@ -59,6 +61,7 @@ void write_output(char *output_path, int output_channels) {
 
 int main(int argc, char **argv) 
 { 
+    printf("Holi");    
 
     //Inicializar MPI
     MPI_Init(&argc, &argv);
@@ -84,13 +87,16 @@ int main(int argc, char **argv)
     printf("Input size = %u\n", input_size);
     output_size = width * height * gray_channels/world_size;
     printf("Output size = %u\n", output_size);
-
+	
+    printf("Toma de tiempos...");
     //Toma inicial de tiempos
     struct timeval tval_before, tval_after, tval_result;
     gettimeofday(&tval_before, NULL);
-
+    printf("Toma de tiempos incial exitosa...");
     //Asignar output
+    printf("Output a asignar...");
     output = (unsigned char *)malloc(output_size*world_size);
+    printf("Output Asignado");
     output_path=*(argv + 2);
 
     //Manejo de erores
