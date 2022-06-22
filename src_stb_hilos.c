@@ -10,14 +10,13 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image/stb_image_write.h"
 
-
 int width, height, channels, gray_channels;
-unsigned char *input, *output;
-size_t input_size, output_size;
+unsigned char *input, *global_output;
 char *output_path;
 
+
 void read_image(char *input_path);
-void* gray_filter(void* params);
+
 void write_output(char *output_path, int output_channels);
 
 
@@ -30,32 +29,19 @@ void read_image(char *input_path) {
     printf("Loaded image with a width of %dpx, a height of %dpx and %d channels\n", width, height, channels);
 }
 
-void* gray_filter(void* i) {
-    int n = *(int *)i;
-    n++;
-    printf("N = %i", n);
-    int inp= input_size*(n);
-    int oup=output_size*(n);    
-    for(unsigned char *p = input + inp, *pg = output + oup; p != input + input_size*(n+1); p += channels, pg += gray_channels) {
-        *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
-        if(channels == 4) 
-            *(pg + 1) = *(p + 3);
-    }
-}
-
 void write_output(char *output_path, int output_channels) {
     char *dot = strrchr(output_path, '.');
     char *ext = dot + 1;
 
     if (strcmp(ext, "jpg") == 0 || strcmp(ext, "jpeg") == 0)
-        stbi_write_jpg(output_path, width, height, output_channels, output, 100);
+        stbi_write_jpg(output_path, width, height, output_channels, global_output, 100);
     else if (strcmp(ext, "png") == 0)
-        stbi_write_png(output_path, width, height, output_channels, output, width * output_channels);
+        stbi_write_png(output_path, width, height, output_channels, global_output, width * output_channels);
     else if (strcmp(ext, "bmp") == 0)
-        stbi_write_bmp(output_path, width, height, output_channels, output);
+        stbi_write_bmp(output_path, width, height, output_channels, global_output);
     else {
         printf("Output type is not jpg, png or bmp, defaulting to output.jpg\n");
-        stbi_write_jpg("output.jpg", width, height, output_channels, output, 100);
+        stbi_write_jpg("output.jpg", width, height, output_channels, global_output, 100);
     }
 }
 
@@ -65,6 +51,8 @@ int main(int argc, char **argv)
 
     //Inicializar MPI
     MPI_Init(&argc, &argv);
+
+    //size_t input_size, output_size;
 
     //Número total de procesos
     int world_size;
@@ -78,19 +66,22 @@ int main(int argc, char **argv)
 
     //Path de la imagen
     read_image(*(argv + 1));
+    MPI_Barrier(MPI_COMM_WORLD);
 
     //Número de canales
-	gray_channels = channels == 4 ? 2 : 1;
+    gray_channels = channels == 4 ? 2 : 1;
 
     //Tamaño de matrices
-	input_size = width * height * channels/world_size;
+    size_t input_size = width * height * channels/world_size;
     printf("Input size = %u\n", input_size);
-    output_size = width * height * gray_channels/world_size;
+    size_t output_size = width * height * gray_channels/world_size;
     printf("Output size = %u\n", output_size);
 
-
+   /* printf("Antes de Barrier\n");
     MPI_Barrier(MPI_COMM_WORLD);
-    MPI_Bcast(input, input_size*world_size, MPI_UNSIGNED_CHAR,0 ,MPI_COMM_WORLD);
+    printf("Después de Barrier\n");*/
+
+    //MPI_Bcast(input, input_size*world_size, MPI_UNSIGNED_CHAR,0 ,MPI_COMM_WORLD);
 	
     //printf("Toma de tiempos...");
     //Toma inicial de tiempos
@@ -99,9 +90,10 @@ int main(int argc, char **argv)
     //printf("Toma de tiempos incial exitosa...");
 
     //Asignar output
-    printf("Output a asignar...");
-    output = (unsigned char *)malloc(output_size*world_size*sizeof(unsigned char*));
-    printf("Output Asignado");
+    printf("Output a asignar...\n");
+    unsigned char *output = (unsigned char *)malloc(output_size*sizeof(unsigned char));
+    global_output = (unsigned char *)malloc(output_size*world_size*sizeof(unsigned char));
+    printf("Output Asignado\n");
     output_path=*(argv + 2);
 
     //Manejo de erores
@@ -109,15 +101,26 @@ int main(int argc, char **argv)
         perror("Unable to allocate memory for the gray image");
         exit(1);
     }
-
-    gray_filter(&world_size);
-
-    MPI_Barrier(MPI_COMM_WORLD); 
-    MPI_Gather( output, output_size, MPI_UNSIGNED_CHAR, output_size*world_size, output_size, MPI_UNSIGNED_CHAR, 0, MPI_COMM_WORLD);
-
-    if(world_rank=0){
-        write_output(output_path, gray_channels);
+	
+    //FUNCION DE FILTRO
+    MPI_Barrier(MPI_COMM_WORLD);    
+    printf("N = %i\n", world_rank);
+    int inp= input_size*(world_rank);
+    printf("Channels: %i - %i \n", channels, gray_channels);       
+    for(unsigned char *p = input + inp, *pg = output; p != input + input_size*(world_rank+1); p += channels, pg += gray_channels) {
+        *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
+        if(channels == 4) 
+            *(pg + 1) = *(p + 3);
     }
+    printf("Filtro aplicado...\n");
+    MPI_Barrier(MPI_COMM_WORLD); 
+  //  printf("Barrier aplicado 2");
+    printf("OSize %i: \n", output_size);
+    MPI_Gather( (void *)output, (int)output_size, MPI_UNSIGNED_CHAR, (void *)global_output, (int)output_size*world_size, MPI_UNSIGNED_CHAR, 0, MPI_COMM_WORLD);
+    printf("Gather Exitoso\n");
+   /* if(world_rank=0){
+        write_output(output_path, gray_channels);
+    }*/
 	
     //gettimeofday(&tval_after, NULL);
     //timersub(&tval_after, &tval_before, &tval_result);
