@@ -45,90 +45,68 @@ void write_output(char *output_path, int output_channels) {
     }
 }
 
-int main(int argc, char **argv) 
-{ 
-    printf("Holi\n");    
+int main(int argc, char **argv)
+{
+    output_path=*(argv + 2);
 
+    //Leer la imagen
+    read_image(*(argv + 1));
+
+    struct timeval tval_before, tval_after, tval_result;
+    gettimeofday(&tval_before, NULL);
+
+    //------------------------------------------------------------------------------------//
     //Inicializar MPI
     MPI_Init(&argc, &argv);
-
-    //size_t input_size, output_size;
 
     //Número total de procesos
     int world_size;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
-    printf("World size = %i\n", world_size);
 
     // Número del hilo
     int world_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-    printf("World Rank = %i\n", world_rank);
-
-    //Path de la imagen
-    read_image(*(argv + 1));
-    MPI_Barrier(MPI_COMM_WORLD);
 
     //Número de canales
     gray_channels = channels == 4 ? 2 : 1;
 
     //Tamaño de matrices
     int input_size = width * height * channels/world_size;
-    printf("Input size = %u\n", input_size);
     int output_size = width * height * gray_channels/world_size;
-    printf("Output size = %u\n", output_size);
 
- 
     //Asignar output
-    printf("Output a asignar...\n");
     unsigned char *output = (unsigned char *)malloc(output_size*sizeof(unsigned char));
-    
     global_output = (unsigned char *)malloc(output_size*world_size*sizeof(unsigned char));
-    printf("Output Asignado\n");
-    
 
-    output_path=*(argv + 2);
-
-    //Manejo de erores
-    if(output == NULL) {
-        perror("Unable to allocate memory for the gray image");
-        exit(1);
-    }
-	
     //FUNCION DE FILTRO
-    MPI_Barrier(MPI_COMM_WORLD);    
-    printf("N = %i\n", world_rank);
     int inp= input_size*(world_rank);
-    printf("Channels: %i - %i \n", channels, gray_channels);   
-    int count = 0;    
-    for(unsigned char *p = input+ inp , *pg = output ; p != input+ input_size*(world_rank+1); p += channels, pg += gray_channels) {
 
+    //Transformación
+    for(unsigned char *p = input+ inp , *pg = output ; p != input+ input_size*(world_rank+1); p += channels, pg += gray_channels) {
         *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
         if(channels == 4) {
             *(pg + 1) = *(p + 3);
         }
     }
-    
-    //write_output(output_path, gray_channels);
-    printf("Count: %i \n", count);
-    printf("Filtro aplicado...\n");
-    
-    MPI_Barrier(MPI_COMM_WORLD); 
-    //printf("Barrier aplicado 2");
 
+    //Espera a que todos terminen
+    MPI_Barrier(MPI_COMM_WORLD);
 
-    //printf("OSize %i: \n", output_size);
+    //Hace el Gather
     MPI_Gather(output, output_size, MPI_UNSIGNED_CHAR, global_output, output_size, MPI_UNSIGNED_CHAR, 0, MPI_COMM_WORLD);
-    printf("Gather Exitoso\n");
 
+    //Finaliza
+    MPI_Finalize();
+    //-------------------------------------------------------------------------------------//
 
     if(world_rank==0){
-        write_output(output_path, gray_channels);
+	gettimeofday(&tval_after, NULL);
+        timersub(&tval_after, &tval_before, &tval_result);
+        printf("Seconds taken: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
     }
-    MPI_Finalize();
-	
-    //gettimeofday(&tval_after, NULL);
-    //timersub(&tval_after, &tval_before, &tval_result);
-    //printf("Seconds taken: %ld.%06ld\n", (long int)tval_result.tv_sec, (long int)tval_result.tv_usec);
+
+    //Escribe la imagen
+    write_output(output_path, gray_channels);
 
     stbi_image_free(input);
     stbi_image_free(output);
