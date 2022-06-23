@@ -72,28 +72,20 @@ int main(int argc, char **argv)
     gray_channels = channels == 4 ? 2 : 1;
 
     //Tamaño de matrices
-    size_t input_size = width * height * channels/world_size;
+    int input_size = width * height * channels/world_size;
     printf("Input size = %u\n", input_size);
-    size_t output_size = width * height * gray_channels/world_size;
+    int output_size = width * height * gray_channels/world_size;
     printf("Output size = %u\n", output_size);
 
-   /* printf("Antes de Barrier\n");
-    MPI_Barrier(MPI_COMM_WORLD);
-    printf("Después de Barrier\n");*/
-
-    //MPI_Bcast(input, input_size*world_size, MPI_UNSIGNED_CHAR,0 ,MPI_COMM_WORLD);
-	
-    //printf("Toma de tiempos...");
-    //Toma inicial de tiempos
-    //struct timeval tval_before, tval_after, tval_result;
-    //gettimeofday(&tval_before, NULL);
-    //printf("Toma de tiempos incial exitosa...");
-
+ 
     //Asignar output
     printf("Output a asignar...\n");
     unsigned char *output = (unsigned char *)malloc(output_size*sizeof(unsigned char));
+    
     global_output = (unsigned char *)malloc(output_size*world_size*sizeof(unsigned char));
     printf("Output Asignado\n");
+    
+
     output_path=*(argv + 2);
 
     //Manejo de erores
@@ -106,21 +98,33 @@ int main(int argc, char **argv)
     MPI_Barrier(MPI_COMM_WORLD);    
     printf("N = %i\n", world_rank);
     int inp= input_size*(world_rank);
-    printf("Channels: %i - %i \n", channels, gray_channels);       
-    for(unsigned char *p = input + inp, *pg = output; p != input + input_size*(world_rank+1); p += channels, pg += gray_channels) {
+    printf("Channels: %i - %i \n", channels, gray_channels);   
+    int count = 0;    
+    for(unsigned char *p = input+ inp , *pg = output ; p != input+ input_size*(world_rank+1); p += channels, pg += gray_channels) {
+
         *pg = (uint8_t)((*p + *(p + 1) + *(p + 2))/3.0);
-        if(channels == 4) 
+        if(channels == 4) {
             *(pg + 1) = *(p + 3);
+        }
     }
+    
+    //write_output(output_path, gray_channels);
+    printf("Count: %i \n", count);
     printf("Filtro aplicado...\n");
+    
     MPI_Barrier(MPI_COMM_WORLD); 
-  //  printf("Barrier aplicado 2");
-    printf("OSize %i: \n", output_size);
-    MPI_Gather( (void *)output, (int)output_size, MPI_UNSIGNED_CHAR, (void *)global_output, (int)output_size*world_size, MPI_UNSIGNED_CHAR, 0, MPI_COMM_WORLD);
+    //printf("Barrier aplicado 2");
+
+
+    //printf("OSize %i: \n", output_size);
+    MPI_Gather(output, output_size, MPI_UNSIGNED_CHAR, global_output, output_size, MPI_UNSIGNED_CHAR, 0, MPI_COMM_WORLD);
     printf("Gather Exitoso\n");
-   /* if(world_rank=0){
+
+
+    if(world_rank==0){
         write_output(output_path, gray_channels);
-    }*/
+    }
+    MPI_Finalize();
 	
     //gettimeofday(&tval_after, NULL);
     //timersub(&tval_after, &tval_before, &tval_result);
